@@ -3,27 +3,162 @@
     padding: 0;
     margin: 0;
     border: 2px solid red;
+    
+}
+body{
+    padding-top: 137px;
+    background-color: rgb(219, 241, 241);
+    background-size: cover;
+    background-position: center;
+    width: 100%;
 }
 nav{
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 20px;
+    padding: 0px 40px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    background-color: rgb(221, 239, 239);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
+
 .left-nav img{
     width: 100px;
     height: 100px;
     border-radius: 50%;
+    display: block;
+    margin: auto;
+}
+.left-nav h2{
+    display: block;
+    margin: auto;
 }
 .right-nav ul{
     display: flex;
-    gap: 10px;
+    gap: 20px;
     list-style: none;
-
 }
 .right-nav ul a{
     text-decoration: none;
     font-size: 1rem;
     color: black;
+}
+.hero{
+    min-height: 80vh;
+    padding: 150px 40px 80px 40px;
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    align-items: center;
+}
+.right-section img{
+    width: 110px;
+    height: 80px;
+    object-fit: cover;
+    background-position: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.project-section{
+    padding: 60px 20px;
+
+}
+.project-section .card h3{
+    margin-bottom: 30px;
+}
+.project-section .card .thumbail{
+    width: 300px;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+}
+.project-grid .card-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+.project-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    padding-top: 20px;
+}
+.card{
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;  
+    background-color: rgb(203, 233, 233);
+
+}
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+.card .detail{
+    margin: 10px;
+    text-decoration: none;
+    color: black;
+}
+.skill-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 10px;
+}
+.skill-grid .card-skill{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;  
+    background-color: rgb(203, 233, 233);
+    height: 30vh;
+}
+.skill-grid .card-skill:hover{
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+.skill-section .card-skill .name-img{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin: 10px 0 ;
+}
+
+
+
+@media(max-width: 768px){
+    /* nav{
+        flex-direction: column;
+    } */
+    .hero{
+        padding: 40px 0 ;
+        flex-direction: column;
+        justify-content:unset;
+        text-align: center;
+        gap: 10px;
+    }
+    .project-grid{
+        grid-template-columns: repeat(1, 1fr) ;
+    }
+    h2{
+        font-size: 1rem;
+    }
+    .skill-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .skill-section .card-skill .name-img{
+        margin: 0;
+
+    }
 }
