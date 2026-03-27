@@ -27,6 +27,9 @@ nav{
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     background-color: rgba(255, 255, 255, 0.2);
 }
+h2{
+    font-size: 2rem;
+}
 .left-nav img{
     width: 60px;
     height: 60px;
@@ -152,7 +155,14 @@ nav{
 }
 .contact-info{
     padding: 10px;
-    line-height: 2rem;
+    line-height: 3rem;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+.contact-info h3, .contact-form h3{
+    font-size: 2rem;
+    padding-bottom: 10px;
 }
 .contact-form form{
     padding: 10px;
@@ -168,18 +178,74 @@ nav{
     background-color: #f1f1f1;
     border-radius: 8px;
 }
+.contact-form h3{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
 .contact-btn{
     padding: 10px;
     border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 
+        10px 10px 20px rgb(203, 233, 233),
+        -10px -10px 20px rgb(192, 237, 237);
+    transition: all 0.2s ease;
 }
-
+.contact-btn:active{
+    box-shadow: 
+            inset 5px 5px 10px rgb(192, 237, 237),   
+            inset -5px -5px 10px rgb(203, 233, 233); 
+            
+    color: black;
+}
 footer{
     background-color: #333;
     color: white;
     text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+footer .quote{
+    font-style: italic;
+    font-size: 1rem;
+    padding-bottom: 10px;
+}
+footer .social-icon{
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 1.5rem;
+    color: rgb(203, 233, 233);
+}
+footer .social-icon a{
+    text-decoration: none;
+    color: rgb(203, 233, 233);
+    width: 40px;
+    height: 40px;
+    border: 1px solid #888;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s ease;
+}
+footer .social-icon a:hover{
+    color: white; 
+    border-color: transparent;
+    transform: translateY(-5px);
+}
+.social-icon a:nth-child(1):hover { color: #1877F2; }
+.social-icon a:nth-child(2):hover { color: #000000; }
+.social-icon a:nth-child(3):hover { color: white; }
+.social-icon a:nth-child(4):hover { color: #cf2727; }
+.copyright {
+    font-size: 0.9rem;
+    color: #999;
     padding: 10px;
 }
-
 @media(max-width: 768px){
     .right-nav .menu{
         display: block;
@@ -254,5 +320,15 @@ footer{
     }
     .contact{
         grid-template-columns: repeat(1, 1fr);
+    }
+    .contact-form form{
+        display: grid;
+    }
+    .contact-form h3{
+        display: flex;
+        justify-content: flex-start;
+    }   
+    .contact-btn{
+        width: 30vw;
     }
 }
