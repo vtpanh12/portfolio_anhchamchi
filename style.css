@@ -9,7 +9,7 @@
 .dark-mode {
     --bg-main: #121212;
     --bg-card: #1e1e1e;     
-    --text-main: #ffffff;
+    --text-main: #c0bcbc;
     --text-muted: #aaaaaa;
     --border-color: #444444;
 }
@@ -17,7 +17,7 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    border: 2px solid red;
+    /* border: 2px solid red; */
 }
 body{
     padding-top: 137px;
@@ -42,15 +42,51 @@ nav{
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     background-color: rgba(255, 255, 255, 0.2);
 }
+h2{
+    font-size: 2rem;
+}
+.left-nav img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: block;
+    margin: auto;
+}
+.left-nav h2{
+    display: block;
+    margin: auto;
+}
+.right-nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.right-nav .menu{
+    display: none;
+}
+.right-nav ul{
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+.right-nav ul a{
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: var(--text-main);
+}
+.right-nav .switch{
+    margin-left: 20px;
+}
 .switch {
   display: block;
-  --width-of-switch: 3.5em;
-  --height-of-switch: 2em;
-  --size-of-icon: 1.4em;
+  --width-of-switch: 3em;
+  --height-of-switch: 1.5em;
+  --size-of-icon: 1.1em;
   --slider-offset: 0.3em;
   position: relative;
   width: var(--width-of-switch);
   height: var(--height-of-switch);
+
 }
 .switch input{
     opacity: 0;
@@ -65,6 +101,7 @@ nav{
     right: 0;
     background-color: #f4f4f5;
     border-radius: 30px;
+    border: 1px solid #000000;
     cursor: pointer;
     transition: .4s;
 }
@@ -80,33 +117,13 @@ nav{
     transition: 0.4s;
     background: linear-gradient(40deg, #ff0080, #ff8c00 70%);
 }
-
-h2{
-    font-size: 2rem;
+input:checked + .slider{
+    background-color: #303136;
 }
-.left-nav img{
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: block;
-    margin: auto;
-}
-.left-nav h2{
-    display: block;
-    margin: auto;
-}
-.right-nav .menu{
-    display: none;
-}
-.right-nav ul{
-    display: flex;
-    gap: 20px;
-    list-style: none;
-}
-.right-nav ul a{
-    text-decoration: none;
-    font-size: 1rem;
-    color: var(--text-main);
+input:checked + .slider::before{
+    left: calc(100% - (var(--size-of-icon) + var(--slider-offset)));
+    box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
+    background: #303136;
 }
 .hero{
     min-height: 80vh;
@@ -115,6 +132,12 @@ h2{
     justify-content: space-between;
     flex: 1;
     align-items: center;
+}
+.left-section{
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 .right-section img{
     width: 110px;
@@ -125,6 +148,7 @@ h2{
 }
 .project-section{
     padding: 60px 20px;
+    color: var(--text-main);
 }
 .project-section h2{
     padding: 10px;
@@ -167,6 +191,9 @@ h2{
     text-decoration: none;
     color: var(--text-main);
 }
+.skill-section{
+    color: var(--text-main);
+}
 .skill-section h2{
     padding: 10px;
     padding-left: 30px;
@@ -206,6 +233,8 @@ h2{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     padding: 10px;
+    color: var(--text-main);
+
 }
 .contact-info{
     padding: 10px;
@@ -244,12 +273,12 @@ h2{
     cursor: pointer;
     box-shadow: 
         10px 10px 20px var(--bg-card),
-        -10px -10px 20px rgb(192, 237, 237);
+        -10px -10px 20px var(--bg-main);
     transition: all 0.2s ease;
 }
 .contact-btn:active{
     box-shadow: 
-            inset 5px 5px 10px rgb(192, 237, 237),   
+            inset 5px 5px 10px var(--bg-main),   
             inset -5px -5px 10px var(--bg-card); 
             
     color: black;
@@ -264,8 +293,10 @@ footer{
 }
 footer .quote{
     font-style: italic;
-    font-size: 1rem;
+    font-size: 1.2rem;
     padding-bottom: 10px;
+    color: var(--text-muted);
+    font-weight: bold;
 }
 footer .social-icon{
     padding: 10px;
@@ -320,7 +351,7 @@ footer .social-icon a:hover{
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start; 
-        background-color: #ffffff; 
+        background-color: var(--bg-main); 
         box-shadow: -10px 0 20px rgba(0,0,0,0.1);
         padding-top: 60px;
         padding-left: 20px;
@@ -333,7 +364,7 @@ footer .social-icon a:hover{
     .right-nav .nav-links a {
         font-size: 1rem;
         font-weight: 600;
-        color: #333;
+        color: var(--text-muted);
     }
     .right-nav ul.active{
         transform: translateX(0);
@@ -385,5 +416,17 @@ footer .social-icon a:hover{
     }   
     .contact-btn{
         width: 30vw;
+    }
+    .switch {
+        --width-of-switch: 2.2em;
+        --height-of-switch: 1.2em;
+        --size-of-icon: 0.9em;
+        --slider-offset: 0.2em;
+    }
+    .right-nav .switch{
+        margin-left: 10px;
+    }
+    footer .quote{
+        font-size: 1rem;
     }
 }
