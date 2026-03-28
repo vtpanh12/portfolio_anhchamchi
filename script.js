@@ -25,21 +25,3 @@ darkmode.addEventListener("change", ()=>{
         localStorage.setItem("theme", "light");
     }
 })
-// const darkModeCheckbox = document.getElementById("dark-mode-checkbox");
-// if (localStorage.getItem("theme") === "dark") {
-//     document.body.classList.add("dark-mode"); 
-//     darkModeCheckbox.checked = true;
-// }
-// darkModeCheckbox.addEventListener("change", () => {
-    
-//     // Nếu công tắc ĐANG BẬT (checked là true)
-//     if (darkModeCheckbox.checked) {
-//         document.body.classList.add("dark-mode"); // Nhuộm đen web
-//         localStorage.setItem("theme", "dark");    // Ghi vào sổ: "Khách thích màu tối"
-//     } 
-//     // Nếu công tắc ĐANG TẮT
-//     else {
-//         document.body.classList.remove("dark-mode"); // Xóa lớp màu đen, về màu sáng
-//         localStorage.setItem("theme", "light");      // Ghi vào sổ: "Khách thích màu sáng"
-//     }
-// });
