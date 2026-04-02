@@ -25,64 +25,88 @@ darkmode.addEventListener("change", ()=>{
         localStorage.setItem("theme", "light");
     }
 })
-// 1. Dán cái link API mà bạn lấy được từ Trạm 2 vào đây
+
 const API_URL = "https://script.google.com/macros/s/AKfycbzE3xCF-b4wfLDErLWqu71Puz4vQsqgVacMuYe6fNT89267HWCPuoTGjziys7UERXQ0DQ/exec";
 
-// 2. Tạo một hàm Bất đồng bộ (async) để có thể dùng lệnh chờ (await)
+function renderHTML(dataArray) {
+    let htmlContent = "";
+    dataArray.forEach(project => {
+        if(project.ten_du_an !== "") {
+            htmlContent += `
+                <div class="card">
+                    <img src="${project.hinh_anh}" alt="${project.ten_du_an}" class="thumbail">
+                    <div class="card-content">
+                        <h3 class="name">${project.ten_du_an}</h3>
+                        <p class="description">${project.mo_ta}</p>
+                        <a class="detail" href="${project.link_du_an}" target="_blank">Xem chi tiết</a>
+                    </div>
+                </div>
+            `;
+        }
+    });
+    return htmlContent; 
+}
+
 async function loadProjects() {
-    // Tóm lấy cái mâm rỗng trong HTML
     const container = document.getElementById("project-container");
-    // 1. NGAY LẬP TỨC HIỂN THỊ LOADING TRƯỚC KHI LÀM GÌ KHÁC
-    // Bạn có thể chèn một chuỗi HTML chứa icon xoay xoay, hoặc đơn giản là dòng chữ.
-    container.innerHTML = `
-        <div style="text-align: center; width: 100%; padding: 50px 0;">
-            <p>⏳ Đang tải các dự án siêu xịn của Han Jisung...</p>
-        </div>
-    `;
+
+    const cachedData = localStorage.getItem("my_projects");
+
+    if (cachedData) {
+        const parsedData = JSON.parse(cachedData);
+        container.innerHTML = renderHTML(parsedData); 
+    } else {
+        container.innerHTML = `<div class="loader"></div>`;
+    }
 
     try {
-        // KHÂU 2: Cử người đi lấy hàng và CHỜ (await)
         const response = await fetch(API_URL);
-        
-        // KHÂU 3: Khui thùng hàng thành JSON và CHỜ (await)
-        const data = await response.json(); 
-        
-        // Chuẩn bị một chuỗi rỗng để gom các card lại
-        let htmlContent = "";
+        const freshData = await response.json(); 
 
-        // KHÂU 4: Chạy vòng lặp qua từng dòng dữ liệu từ Google Sheets
-        data.forEach(project => {
-            // Kiểm tra xem dòng đó có dữ liệu không (tránh lỗi dòng trống ở cuối Excel)
-            if(project.ten_du_an !== "") {
-                
-                // Dùng dấu backtick ( ` ) để bọc đoạn HTML. 
-                // Dùng ${project.tên_cột_trong_excel} để nhét dữ liệu thật vào.
-                htmlContent += `
-                    <div class="card">
-                        <img src="${project.hinh_anh}" alt="${project.ten_du_an}" class="thumbail">
-                        <div class="card-content">
-                            <h3 class="name">
-                                ${project.ten_du_an}
-                            </h3>
-                            <p class="description">
-                                ${project.mo_ta}
-                            </p>
-                            <a class="detail" href="${project.link_chi_tiet}" target="_blank">Xem chi tiết</a>
-                        </div>
-                    </div>
-                `;
-            }
-        });
+        localStorage.setItem("my_projects", JSON.stringify(freshData));
 
-        // Ốp toàn bộ các thẻ card vừa đúc xong vào trong HTML
-        container.innerHTML = htmlContent;
+        container.innerHTML = renderHTML(freshData);
 
     } catch (error) {
-        // Nếu có lỗi (như rớt mạng, sai link), nó sẽ báo ở đây để web không bị sập
-        console.error("Lỗi khi tải dữ liệu:", error);
-        container.innerHTML = "<p>Không thể tải dữ liệu dự án. Vui lòng thử lại sau!</p>";
+        console.error("Lỗi khi tải dữ liệu mới:", error);
+        if (!cachedData) {
+            container.innerHTML = `<p style="text-align:center;">Lỗi kết nối mạng. Vui lòng thử lại!</p>`;
+        }
     }
 }
 
-// 3. Ra lệnh cho hàm chạy ngay khi trang web vừa tải xong
 loadProjects();
+
+//Đây là đoạn code doGet() trên app script
+// function doGet(e) {
+//   const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+      
+//   const data = sheet.getDataRange().getValues();
+      
+//   const headers = data[0];
+//   const resultArray = [];
+    
+//   for (let i = 1; i < data.length; i++) { //đây là vòng lặp, lặp qua từng hàng
+//       const row = data[i];  //lặp qua các hàng dữ liệu trong sheet   
+//       const object = {};  //tạo ra 1 đối tượng mới rỗng để chứa dữ liệu dạng JSON
+        
+//       for (let j = 0; j < headers.length; j++) { //đây là vòng lặp, lặp qua từng cột với header
+//           object[headers[j]] = row[j];// ghép nối từng phần tử trong mảng data đúng với tiêu đề của nó
+//       }
+        
+//       resultArray.push(object); //sau đó push cái object đã ghép nối thành công vào mảng đã khởi tạo rỗng ban đầu
+//       //object bây giờ sẽ có dạng key1-value1, key2-value2
+//     }
+//   const jsonString = JSON.stringify(resultArray);
+//   return ContentService.createTextOutput(jsonString)
+//                          .setMimeType(ContentService.MimeType.JSON);
+// }
+//b1: truy cập vào excel, lấy cái file đang active, sau đó truy cập vào sheet đang active
+//b2: quét hết cả trang tính, sau đó getValus để lấy dữ liệu ra => nó đang là mảng 2 chiều
+//b3: lấy dòng đầu tiên của mảng => data[0] làm header = tiêu đề
+//b4: tạo 1 mảng rỗng để chứa dữ liệu dạng JSON key-value
+//b5: duyệt qua mảng dữ liệu (bỏ qua hàng tiêu đề)
+
+//b6: ghép nối dữ liệu -> đẩy nó lên mảng kết quả
+//b7: chuyển đổi thành kiểu text/string để có thể truyền qua internet
+//b8: đóng gói, tạo 1 text output -> báo cáo nó là 1 JSON
