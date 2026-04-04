@@ -110,3 +110,117 @@ loadProjects();
 //b6: ghép nối dữ liệu -> đẩy nó lên mảng kết quả
 //b7: chuyển đổi thành kiểu text/string để có thể truyền qua internet
 //b8: đóng gói, tạo 1 text output -> báo cáo nó là 1 JSON
+
+
+const translations = {
+    "nav":{
+        "home":{
+            "vi": "Trang chủ",
+            "en": "Home"
+        },
+        "story":{
+            "vi": "Câu chuyện",
+            "en": "Story"
+        },
+        "music":{
+            "vi": "Âm nhạc",
+            "en": "Music"
+        },
+        "english":{
+            "vi": "Tiếng anh",
+            "en": "English"
+        }
+    },
+    "hero": {
+        "hello": {
+            "vi": "Xin chào thế giới",
+            "en": "Hello world"
+        },
+        "coder": {
+            "vi": "Tôi là một lập trình viên",
+            "en": "I am a coder"
+        },
+        "description": {
+            "vi": "Tôi thích code, tôi có thể code mỗi ngày",
+            "en": "I love code, i can code every single day"
+        },
+        "btn": {
+            "vi": "Gọi cho tôi ngay nào",
+            "en": "Call me now"
+        }
+    },
+    "project": {
+        "title": {
+            "vi": "DỰ ÁN",
+            "en": "PROJECT"
+        }
+    },
+    "skill": {
+        "title": {
+            "vi": "KỸ NĂNG",
+            "en": "SKILLS"
+        }
+    },
+    "contact": {
+        "title": {
+            "vi": "LIÊN HỆ",
+            "en": "CONTACT"
+        },
+        "info": {
+            "vi": "Thông tin liên lạc",
+            "en": "INFO"
+        },"address": {
+            "vi": "Địa chỉ",
+            "en": "Address: Cần Thơ, Việt Nam"
+        },"name": {
+            "vi": "Tên của bạn",
+            "en": "Name"
+        },"email": {
+            "vi": "Email của bạn",
+            "en": "Email"
+        },"message": {
+            "vi": "Lời nhắn...",
+            "en": "Message..."
+        },"send": {
+            "vi": "Gửi tin nhắn",
+            "en": "Send message"
+        }
+    },
+    "footer": {
+        "quote": {
+            "vi": "Nếu cuộc sống này là sự chịu đựng hãy chọn điều bạn muốn",
+            "en": "Life is suffering and so choose something worth suffering for - Graham Weaver"
+        },
+        "copyright": {
+            "vi": "2026 Bản quyền thuộc về Anhchamchi.",
+            "en": "2026 Copyright Anhchamchi."
+        }
+    }
+}
+
+function changeLanguage(lang){
+    const elements = document.querySelectorAll("[data-i18n]");
+    elements.forEach(element=>{
+        let maVach = element.getAttribute("data-i18n");
+        let keys = maVach.split(".");
+        let chuMoi = translations[keys[0]][keys[1]][lang];
+        element.innerHTML = chuMoi;
+    })
+}
+const vi = document.getElementById("btn-vi");
+const en = document.getElementById("btn-en");
+vi.addEventListener("click", ()=> {
+    changeLanguage("vi");
+    localStorage.setItem("change-lang", "vi");
+})
+en.addEventListener("click", ()=>{
+    changeLanguage("en");
+    localStorage.setItem("change-lang", "en");
+})
+const saveLang = localStorage.getItem("change-lang");
+if(saveLang){
+    changeLanguage(saveLang);
+}
+else{
+    changeLanguage("vi");
+}
