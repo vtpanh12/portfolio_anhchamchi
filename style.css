@@ -125,6 +125,23 @@ input:checked + .slider::before{
     box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
     background: #303136;
 }
+.btn-lang{
+    margin-left: 10px;
+}
+.lang-btn{
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
+    font-size: 1rem;
+    color: var(--text-main);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+.lang-btn:hover {
+    color: #555;
+}
+
 .hero{
     min-height: 80vh;
     padding: 150px 40px 80px 40px;
@@ -430,6 +447,21 @@ footer .social-icon a:hover{
     }
     footer .quote{
         font-size: 1rem;
+    }
+    .contact-info{
+        line-height: 1.3rem;
+    }
+    .contact-info h3, .contact-form h3{
+        font-size: 1rem;
+    }
+    .contact-info p{
+        font-size: 0.8rem;
+    }
+    .contact-name, .contact-email, .contact-mess, .contact-btn{
+        font-size: 0.6rem;
+    }
+    footer .quote{
+        font-size: 0.9rem;
     }
 }
 .loader {

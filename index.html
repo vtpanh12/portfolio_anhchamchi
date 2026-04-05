@@ -15,10 +15,10 @@
         </div>
         <div class="right-nav">
             <ul class="nav-links">
-                <li><a href="">Home</a></li>
-                <li><a href="">Story</a></li>
-                <li><a href="">Music</a></li>
-                <li><a href="">English</a></li>
+                <li><a href="" data-i18n="nav.home">Home</a></li>
+                <li><a href="" data-i18n="nav.story">Story</a></li>
+                <li><a href="" data-i18n="nav.music">Music</a></li>
+                <li><a href="" data-i18n="nav.english">English</a></li>
             </ul>
             
             <div class="menu">
@@ -28,22 +28,27 @@
                 <input type="checkbox" id="dark-mode-checkbox">
                 <span class="slider"></span>
             </label>
+            <div class="btn-lang">
+                <button id="btn-vi" class="lang-btn">VI</button> /
+                <button id="btn-en" class="lang-btn">EN</button>
+            </div>
+            
         </div>
     </nav>
     <div class="overlay-bg"></div>
     <section class="hero">
         <div class="left-section">
-            <h2>Hello world</h2>
-            <h2>I am a coder</h2>
-            <p>I love code, i can code every single day</p>
-            <button class="btn-call">Call me now</button>
+            <h2 data-i18n="hero.hello">Hello world</h2>
+            <h2 data-i18n="hero.coder">I am a coder</h2>
+            <p data-i18n="hero.description">I love code, i can code every single day</p>
+            <button class="btn-call" data-i18n="hero.btn">Call me now</button>
         </div>
         <div class="right-section">
             <img src="https://i.pinimg.com/1200x/ef/04/db/ef04db6b18657d4a13a27a3778145f7b.jpg" alt="">
         </div>
     </section>
     <section class="project-section">
-        <h2>PROJECT</h2>
+        <h2 data-i18n="project.title">PROJECT</h2>
         <div class="project-grid" id="project-container">
         </div>  
         <!-- <div class="project-grid">
@@ -86,7 +91,7 @@
         </div> -->
     </section>
     <section class="skill-section">
-        <h2>SKILLS</h2>
+        <h2 data-i18n="skill.title">SKILLS</h2>
         <div class="skill-grid">
             <div class="card-skill">
                 <img src="https://i.pinimg.com/1200x/fd/0c/78/fd0c78c0d5706d2a1460a7bb07eb3cb7.jpg" alt="" class="name-img">
@@ -107,33 +112,33 @@
         </div>
     </section>
     <section class="contact-section">
-        <h2>CONTACT</h2>
+        <h2 data-i18n="contact.title">CONTACT</h2>
         <div class="contact">
             <div class="contact-info">
-                <h3>Thông tin liên lạc</h3>
+                <h3 data-i18n="contact.info">Thông tin liên lạc</h3>
                 <p>Email: anhchamchi@gmail.com</p>
-                <p>Địa chỉ: Cần Thơ, Việt Nam</p>
+                <p data-i18n="contact.address">Địa chỉ: Cần Thơ, Việt Nam</p>
             </div>
             <div class="contact-form">
-                <h3>Liên hệ</h3>
+                <h3>FORM</h3>
                 <form action="">
-                    <input type="text" placeholder="Tên của bạn" class="contact-name">
-                    <input type="email" placeholder="Email của bạn" class="contact-email">
-                    <textarea placeholder="Lời nhắn..." rows="5" class="contact-mess"></textarea>
-                    <button type="submit" class="contact-btn">Gửi tin nhắn</button>
+                    <input type="text" placeholder="Tên của bạn" class="contact-name" data-i18n="contact.name">
+                    <input type="email" placeholder="Email của bạn" class="contact-email" data-i18n="contact.email">
+                    <textarea placeholder="Lời nhắn..." rows="5" class="contact-mess" data-i18n="contact.message"></textarea>
+                    <button type="submit" class="contact-btn" data-i18n="contact.send">Gửi tin nhắn</button>
                 </form>
             </div>
         </div>
     </section>
     <footer>
-        <p class="quote">"Life is suffering and so choose something worth suffering for" - Graham Weaver</p>
+        <p class="quote" data-i18n="footer.quote" >"Life is suffering and so choose something worth suffering for" - Graham Weaver</p>
         <div class="social-icon">
             <a href=""><i class="fa-brands fa-facebook"></i></a>
             <a href=""><i class="fa-brands fa-tiktok"></i></a>
             <a href=""><i class="fa-brands fa-github"></i></a>
             <a href="https://www.youtube.com/@anhchamchi02"><i class="fa-brands fa-youtube"></i></a>
         </div>
-        <p class="copyright">© 2026 Bản quyền thuộc về Anhchamchi.</p>
+        <p class="copyright" data-i18n="footer.copyright">© 2026 Bản quyền thuộc về Anhchamchi.</p>
     </footer>
     <script src="/script.js"></script>
 </body>
