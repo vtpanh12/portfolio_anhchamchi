@@ -170,7 +170,7 @@ const translations = {
             "vi": "Thông tin liên lạc",
             "en": "INFO"
         },"address": {
-            "vi": "Địa chỉ",
+            "vi": "Địa chỉ: Cần Thơ, Việt Nam",
             "en": "Address: Cần Thơ, Việt Nam"
         },"name": {
             "vi": "Tên của bạn",
@@ -204,7 +204,13 @@ function changeLanguage(lang){
         let maVach = element.getAttribute("data-i18n");
         let keys = maVach.split(".");
         let chuMoi = translations[keys[0]][keys[1]][lang];
-        element.innerHTML = chuMoi;
+        if(element.hasAttribute("placeholder")){
+            element.placeholder = chuMoi;
+        }
+        else{
+            element.innerHTML = chuMoi;
+        }
+        
     })
 }
 const vi = document.getElementById("btn-vi");
